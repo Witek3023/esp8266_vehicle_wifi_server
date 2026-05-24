@@ -2,7 +2,7 @@
 
 Control a vehicle from your phone over WiFi. The ESP8266 runs as a **WiFi Access Point**, serves a mobile-friendly web UI, and maps each button to an HTTP endpoint that moves the steering or drive servo.
 
-Control panel on a phone
+![Control panel on a phone](webui.png)
 
 ## Web UI overview
 
