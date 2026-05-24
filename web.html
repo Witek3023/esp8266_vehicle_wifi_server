@@ -1,0 +1,132 @@
+<!-- For local testing only -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>ESP8266 Vehicle Control</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e1e;
+            color: #eee;
+            margin: 0;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
+        }
+        h1, h2, .btn {
+            font-size: 1.5rem;
+        }
+
+        .status {
+            flex-shrink: 0;
+            text-align: center;
+            padding-top: 8px;
+        }
+
+        .status h1 {
+            margin: 0 0 8px;
+        }
+
+        .status h2 {
+            margin: 4px 0;
+            font-weight: normal;
+        }
+
+        .controls {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            max-width: 480px;
+            margin: 12px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: repeat(4, 1fr);
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .btn {
+            height: 100%;
+            min-height: 0;
+            padding: 12px 6px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+
+        .left {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            background: #9b59b6;
+        }
+
+        .center {
+            grid-column: 2;
+            grid-row: 1;
+            background: #7f8c8d;
+        }
+
+        .forward {
+            grid-column: 2;
+            grid-row: 2;
+            background: #6a9955;
+        }
+
+        .backward {
+            grid-column: 2;
+            grid-row: 3;
+            background: #d3d300;
+            color: #1e1e1e;
+        }
+
+        .stop {
+            grid-column: 2;
+            grid-row: 4;
+            background: #f44747;
+        }
+
+        .right {
+            grid-column: 3;
+            grid-row: 1 / -1;
+            background: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <header class="status">
+        <h1>ESP8266 CAR CONTROL</h1>
+        <h2>Servo: <span id="servo-pos">{{SERVO_POS}}</span>°</h2>
+        <h2>Motor: <span id="motor-pwm">{{MOTOR_PWM}}</span></h2>
+    </header>
+
+    <div class="controls">
+        <a class="btn left" href="/left">LEWO</a>
+        <a class="btn center" href="/center">PROSTO</a>
+        <a class="btn right" href="/right">PRAWO</a>
+        <a class="btn forward" href="/forward">PRZOD</a>
+        <a class="btn backward" href="/backward">TYL</a>
+        <a class="btn stop" href="/stop">STOP</a>
+    </div>
+
+    <script>
+        if (location.protocol === "file:") {
+            document.getElementById("servo-pos").textContent = "90";
+            document.getElementById("motor-pwm").textContent = "90";
+        }
+    </script>
+</body>
+</html>
